@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RoundShift is a multi-tenant staffing operations prototype for senior-care agencies and independent contractors.">
+  <title>RoundShift — Senior-care staffing, simplified</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <a class="brand" href="#" aria-label="RoundShift home">
+        <span class="brand-mark">R</span>
+        <span>RoundShift</span>
+      </a>
+
+      <div class="mode-switch" role="group" aria-label="Demo view">
+        <button class="mode-button active" data-mode="admin">Agency</button>
+        <button class="mode-button" data-mode="contractor">Contractor</button>
+      </div>
+
+      <nav id="admin-nav" class="nav-list">
+        <button class="nav-item active" data-view="dashboard"><span>⌁</span> Overview</button>
+        <button class="nav-item" data-view="shifts"><span>◷</span> Shift board</button>
+        <button class="nav-item" data-view="contractors"><span>◉</span> Contractors</button>
+        <button class="nav-item" data-view="clients"><span>◇</span> Clients & contracts</button>
+      </nav>
+
+      <nav id="contractor-nav" class="nav-list hidden">
+        <button class="nav-item active" data-view="open-feed"><span>✦</span> Open shifts</button>
+        <button class="nav-item" data-view="my-shifts"><span>◷</span> My shifts</button>
+        <button class="nav-item" data-view="profile"><span>◉</span> Profile</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p class="eyebrow">DEMO WORKSPACE</p>
+        <p>No payments or tax records are processed.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Open navigation">☰</button>
+        <div>
+          <p class="eyebrow" id="workspace-label">AGENCY WORKSPACE</p>
+          <h1 id="page-title">Good evening, Amanda</h1>
+        </div>
+        <div class="topbar-actions">
+          <label class="agency-picker" id="agency-picker-wrap">
+            <span>Viewing</span>
+            <select id="agency-picker" aria-label="Choose agency"></select>
+          </label>
+          <button class="icon-button" aria-label="Notifications">●</button>
+          <div class="avatar">AP</div>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="view" id="dashboard-view"></section>
+        <section class="view hidden" id="shifts-view"></section>
+        <section class="view hidden" id="contractors-view"></section>
+        <section class="view hidden" id="clients-view"></section>
+        <section class="view hidden" id="open-feed-view"></section>
+        <section class="view hidden" id="my-shifts-view"></section>
+        <section class="view hidden" id="profile-view"></section>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="shift-dialog" class="modal">
+    <form id="shift-form" method="dialog">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">NEW COVERAGE REQUEST</p>
+          <h2>Post a shift</h2>
+        </div>
+        <button type="button" class="close-button" data-close-modal aria-label="Close">×</button>
+      </div>
+
+      <div class="form-grid">
+        <label>Client type
+          <select id="client-type" name="clientType" required>
+            <option value="Facility">Facility</option>
+            <option value="Individual">Individual</option>
+          </select>
+        </label>
+        <label>Client
+          <select id="client-name" name="clientName" required></select>
+        </label>
+        <label>Date
+          <input name="date" type="date" required>
+        </label>
+        <label>Start time
+          <input name="start" type="time" required value="08:00">
+        </label>
+        <label>End time
+          <input name="end" type="time" required value="16:00">
+        </label>
+        <label>Certification
+          <select name="cert">
+            <option>None</option>
+            <option>CNA</option>
+            <option>HHA</option>
+            <option>CPR</option>
+          </select>
+        </label>
+        <label>Contractor pay rate
+          <div class="money-input"><span>$</span><input id="pay-rate" name="payRate" type="number" min="0" step="0.50" value="18" required></div>
+        </label>
+        <label>Client bill rate
+          <div class="money-input"><span>$</span><input id="bill-rate" name="billRate" type="number" min="0" step="0.50" value="27" required></div>
+        </label>
+        <div class="margin-preview">
+          <span>Estimated margin</span>
+          <strong id="margin-value">$9.00/hr</strong>
+        </div>
+        <label class="full-span">Address
+          <input name="address" type="text" placeholder="Street, city, TX" required>
+        </label>
+        <label class="full-span">Notes <span class="optional">Optional</span>
+          <textarea name="notes" rows="3" placeholder="Helpful details for the contractor"></textarea>
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="button secondary" data-close-modal>Cancel</button>
+        <button type="submit" class="button primary">Post open shift</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
