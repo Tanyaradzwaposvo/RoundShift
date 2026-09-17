@@ -1,15 +1,24 @@
 # RoundShift
 
-RoundShift is a responsive, multi-tenant healthcare staffing marketplace connecting agencies with qualified professionals across hospitals, hospice, pharmacies, clinics, senior care, and home care. It replaces disconnected spreadsheets and phone calls with a shared shift marketplace while preserving tenant isolation and agency-specific professional relationships.
+RoundShift helps healthcare staffing agencies coordinate recurring and urgent coverage across multiple care settings—while protecting continuity of care through distance-aware matching and controlled shift commitments.
+
+It is positioned as an **agency operating and coverage network**, not simply another shift marketplace. Agencies coordinate client coverage, professional relationships, assignment rules, and contract visibility across hospitals, hospice, pharmacies, clinics, senior care, and home care from one workspace.
+
+## Product focus
+
+- **Coordinate coverage:** Manage one-time, recurring, and urgent staffing needs across every agency client.
+- **Protect continuity:** Limit over-commitment and repeated releases after a professional accepts an assignment.
+- **Match intelligently:** Surface qualified professionals and show travel distance before they commit.
+- **Keep agencies in control:** Preserve agency-specific contracts, margins, cancellations, and professional relationships.
 
 ## Live prototype features
 
 - Agency dashboard with tenant switching
-- Shift board with open, claimed, and completed states
+- Coverage board with open, claimed, completed, and cancelled states
 - One-time and ongoing coverage workflows, including seven-day schedules and selected weekdays
 - Start-time and end-time display for every shift pattern
 - Distance shown at a glance and open shifts sorted nearest-first for contractors
-- Cross-agency healthcare-professional marketplace
+- Cross-agency healthcare-professional coverage network
 - Hospital, hospice, pharmacy, clinic, senior-living, and private-client worksites
 - Role-specific shifts for nurses, CNAs, HHAs, pharmacists, pharmacy technicians, medical assistants, caregivers, and companions
 - Credential-aware eligibility checks before a professional can claim a shift
@@ -24,6 +33,7 @@ RoundShift is a responsive, multi-tenant healthcare staffing marketplace connect
 
 ## Product principles
 
+- RoundShift is an agency operating and coverage network; talent discovery is one capability within it.
 - Agencies are isolated tenants.
 - Professionals have one platform-wide profile and can browse shifts from multiple agencies.
 - Bill rates and margins remain agency-only.
@@ -51,7 +61,7 @@ Then open `http://localhost:8000`.
 3. Post one-time coverage, a seven-day ongoing schedule, or an ongoing schedule with selected days.
 4. Enter Contractor mode to compare nearby opportunities by distance.
 5. Claim an eligible shift and review the two-shifts-per-day rule.
-6. Open **My shifts** to see the one-per-day and three-per-week release policy.
+6. Open **My commitments** to see the one-per-day and three-per-week release policy.
 7. Return to Agency mode to cancel coverage that is no longer needed.
 
 ## Technical approach

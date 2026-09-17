@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="RoundShift is a multi-tenant healthcare staffing marketplace for agencies and qualified professionals.">
-  <title>RoundShift — Healthcare staffing, connected</title>
+  <meta name="description" content="RoundShift helps healthcare staffing agencies coordinate recurring and urgent coverage through distance-aware matching and controlled shift commitments.">
+  <title>RoundShift — Healthcare coverage, coordinated</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -25,14 +25,14 @@
 
       <nav id="admin-nav" class="nav-list">
         <button class="nav-item active" data-view="dashboard"><span>⌁</span> Overview</button>
-        <button class="nav-item" data-view="shifts"><span>◷</span> Shift board</button>
+        <button class="nav-item" data-view="shifts"><span>◷</span> Coverage board</button>
         <button class="nav-item" data-view="contractors"><span>◉</span> Contractors</button>
         <button class="nav-item" data-view="clients"><span>◇</span> Worksites & contracts</button>
       </nav>
 
       <nav id="contractor-nav" class="nav-list hidden">
-        <button class="nav-item active" data-view="open-feed"><span>✦</span> Open shifts</button>
-        <button class="nav-item" data-view="my-shifts"><span>◷</span> My shifts</button>
+        <button class="nav-item active" data-view="open-feed"><span>✦</span> Open coverage</button>
+        <button class="nav-item" data-view="my-shifts"><span>◷</span> My commitments</button>
         <button class="nav-item" data-view="profile"><span>◉</span> Profile</button>
       </nav>
 
@@ -46,7 +46,7 @@
       <header class="topbar">
         <button class="mobile-menu" id="mobile-menu" aria-label="Open navigation">☰</button>
         <div>
-          <p class="eyebrow" id="workspace-label">AGENCY WORKSPACE</p>
+          <p class="eyebrow" id="workspace-label">AGENCY OPERATING NETWORK</p>
           <h1 id="page-title">Good evening, Amanda</h1>
         </div>
         <div class="topbar-actions">
@@ -173,6 +173,6 @@
   </dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

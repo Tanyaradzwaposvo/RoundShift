@@ -197,11 +197,11 @@ function renderDashboard() {
   const renewals = state.clients.filter((c) => c.agencyId === state.agencyId).sort((a, b) => a.renewal.localeCompare(b.renewal)).slice(0, 3);
 
   $("#dashboard-view").innerHTML = `
-    <div class="view-header"><div><p class="eyebrow">TODAY AT A GLANCE</p><h2>Operations overview</h2><p>Coverage, contractors, and upcoming contract renewals.</p></div><button class="button primary" data-post-shift>＋ Post a shift</button></div>
+    <div class="view-header"><div><p class="eyebrow">AGENCY OPERATING NETWORK</p><h2>Healthcare coverage, coordinated</h2><p>Coordinate recurring and urgent coverage across every care setting while protecting continuity of care.</p></div><button class="button primary" data-post-shift>＋ Post coverage</button></div>
     ${flagged.length ? `<div class="alert"><div><strong>Release history review</strong>${flagged.map((c) => c.name).join(", ")} has prior releases with this agency. Current policy allows one release per day and three per week.</div><span class="badge flag">Agency-only</span></div>` : ""}
     <div class="metric-grid">
-      <div class="metric-card"><span class="metric-label">Open shifts</span><strong>${open.length}</strong><span class="trend">Ready to claim</span></div>
-      <div class="metric-card"><span class="metric-label">Claimed shifts</span><strong>${claimed.length}</strong><span class="trend">Coverage confirmed</span></div>
+      <div class="metric-card"><span class="metric-label">Open coverage</span><strong>${open.length}</strong><span class="trend">Ready to claim</span></div>
+      <div class="metric-card"><span class="metric-label">Claimed coverage</span><strong>${claimed.length}</strong><span class="trend">Commitments confirmed</span></div>
       <div class="metric-card"><span class="metric-label">Active worksites</span><strong>${state.clients.filter((c) => c.agencyId === state.agencyId).length}</strong><span class="trend">Healthcare + private</span></div>
       <div class="metric-card"><span class="metric-label">Demo margin</span><strong>$${revenue}</strong><span class="trend">Completed shifts</span></div>
     </div>
@@ -215,7 +215,7 @@ function renderShifts() {
   const all = state.shifts.filter((s) => s.agencyId === state.agencyId);
   const shifts = state.shiftFilter === "all" ? all : all.filter((s) => s.status === state.shiftFilter);
   $("#shifts-view").innerHTML = `
-    <div class="view-header"><div><p class="eyebrow">COVERAGE PIPELINE</p><h2>Shift board</h2><p>Manage one-time and ongoing coverage. Only the agency can cancel services that are no longer needed.</p></div><button class="button primary" data-post-shift>＋ Post coverage</button></div>
+    <div class="view-header"><div><p class="eyebrow">COVERAGE PIPELINE</p><h2>Coverage board</h2><p>Coordinate one-time, recurring, and urgent commitments. Only the agency cancels services that are no longer needed.</p></div><button class="button primary" data-post-shift>＋ Post coverage</button></div>
     <div class="toolbar"><div class="filter-group">${["all", "open", "claimed", "completed", "cancelled"].map((f) => `<button class="filter-button ${state.shiftFilter === f ? "active" : ""}" data-filter="${f}">${f[0].toUpperCase() + f.slice(1)} · ${f === "all" ? all.length : all.filter((s) => s.status === f).length}</button>`).join("")}</div></div>
     <div class="shift-list">${shifts.map((s) => shiftCard(s)).join("") || '<div class="empty-state"><strong>No shifts here</strong>Try another filter or post a new shift.</div>'}</div>`;
 }
@@ -245,7 +245,7 @@ function renderOpenFeed() {
   const open = state.shifts.filter((s) => s.status === "open").sort((a, b) => (distanceMiles(a, me) ?? Infinity) - (distanceMiles(b, me) ?? Infinity));
   const allowance = dropAllowance(me.id);
   $("#open-feed-view").innerHTML = `
-    <div class="view-header"><div><p class="eyebrow">SORTED BY DISTANCE</p><h2>Open shifts near you</h2><p>See miles from your home base at a glance. You may hold up to two shift assignments per day.</p></div></div>
+    <div class="view-header"><div><p class="eyebrow">DISTANCE-AWARE MATCHING</p><h2>Open coverage near you</h2><p>Compare qualified opportunities by distance before committing. You may hold up to two assignments per day.</p></div></div>
     <div class="feed-layout"><div class="shift-list">${open.map((s) => shiftCard(s, true)).join("") || '<div class="empty-state"><strong>No open shifts</strong>Check back soon for new opportunities.</div>'}</div>
     <aside class="feed-sidebar profile-card"><div class="profile-hero"><div class="avatar">${initials(me.name)}</div><div><h3>${me.name}</h3><p>Independent healthcare professional</p></div></div><div class="profile-stat"><span>Distance from</span><strong>${me.location?.label || "Location needed"}</strong></div><div class="profile-stat"><span>Daily assignment limit</span><strong>2 shifts</strong></div><div class="profile-stat"><span>Releases today</span><strong>${allowance.todayCount} / 1</strong></div><div class="profile-stat"><span>Releases this week</span><strong>${allowance.weekCount} / 3</strong></div><div class="policy-note">Agencies cancel coverage when services are no longer needed. Contractor releases are limited to protect continuity of care.</div></aside></div>`;
 }
@@ -253,7 +253,7 @@ function renderOpenFeed() {
 function renderMyShifts() {
   const shifts = state.shifts.filter((s) => s.contractorId === state.contractorId && ["claimed", "cancelled"].includes(s.status));
   const allowance = dropAllowance(state.contractorId);
-  $("#my-shifts-view").innerHTML = `<div class="view-header"><div><p class="eyebrow">YOUR SCHEDULE</p><h2>My shift assignments</h2><p>Up to two assignments per day. Releases are limited to one per day and three per week.</p></div><div class="limit-summary"><strong>${allowance.todayCount}/1</strong><span>released today</span><strong>${allowance.weekCount}/3</strong><span>this week</span></div></div><div class="shift-list">${shifts.map((s) => shiftCard(s, true)).join("") || '<div class="empty-state"><strong>Your schedule is clear</strong>Browse open shifts when you are ready.</div>'}</div>`;
+  $("#my-shifts-view").innerHTML = `<div class="view-header"><div><p class="eyebrow">CONTROLLED COMMITMENTS</p><h2>My coverage commitments</h2><p>Up to two assignments per day. Releases are limited to one per day and three per week to protect continuity.</p></div><div class="limit-summary"><strong>${allowance.todayCount}/1</strong><span>released today</span><strong>${allowance.weekCount}/3</strong><span>this week</span></div></div><div class="shift-list">${shifts.map((s) => shiftCard(s, true)).join("") || '<div class="empty-state"><strong>Your schedule is clear</strong>Browse open coverage when you are ready.</div>'}</div>`;
 }
 
 function renderProfile() {
@@ -266,7 +266,7 @@ function render() {
   $$(".view").forEach((view) => view.classList.add("hidden"));
   $(`#${state.view}-view`).classList.remove("hidden");
   $$(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.view === state.view));
-  const titles = { dashboard: "Good evening, Amanda", shifts: "Shift operations", contractors: "Professional roster", clients: "Worksite accounts", "open-feed": "Find your next shift", "my-shifts": "Your schedule", profile: "Your profile" };
+  const titles = { dashboard: "Agency coverage network", shifts: "Coverage operations", contractors: "Professional roster", clients: "Worksite accounts", "open-feed": "Find nearby coverage", "my-shifts": "Your commitments", profile: "Your profile" };
   $("#page-title").textContent = titles[state.view];
   bindDynamicEvents();
 }
@@ -278,7 +278,7 @@ function switchMode(mode) {
   $("#admin-nav").classList.toggle("hidden", mode !== "admin");
   $("#contractor-nav").classList.toggle("hidden", mode !== "contractor");
   $("#agency-picker-wrap").classList.toggle("hidden", mode !== "admin");
-  $("#workspace-label").textContent = mode === "admin" ? "AGENCY WORKSPACE" : "CONTRACTOR MARKETPLACE";
+  $("#workspace-label").textContent = mode === "admin" ? "AGENCY OPERATING NETWORK" : "PROFESSIONAL COVERAGE NETWORK";
   render();
 }
 
