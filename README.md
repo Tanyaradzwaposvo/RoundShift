@@ -6,13 +6,17 @@ RoundShift is a responsive, multi-tenant healthcare staffing marketplace connect
 
 - Agency dashboard with tenant switching
 - Shift board with open, claimed, and completed states
-- Post-a-shift workflow with live margin calculation
+- One-time and ongoing coverage workflows, including seven-day schedules and selected weekdays
+- Start-time and end-time display for every shift pattern
+- Distance shown at a glance and open shifts sorted nearest-first for contractors
 - Cross-agency healthcare-professional marketplace
 - Hospital, hospice, pharmacy, clinic, senior-living, and private-client worksites
 - Role-specific shifts for nurses, CNAs, HHAs, pharmacists, pharmacy technicians, medical assistants, caregivers, and companions
 - Credential-aware eligibility checks before a professional can claim a shift
-- Claim and drop flows with automatic reposting
-- Agency-scoped reliability flags after five drops
+- Two-shift-per-day assignment limit
+- Contractor release limits of one per day and three per week
+- Agency-controlled cancellation when services are no longer needed
+- Claim and controlled-release flows with automatic reposting
 - Contractor roster with optional certifications and experience
 - Worksite and individual-client contract tracking
 - Responsive desktop and mobile layouts
@@ -25,6 +29,8 @@ RoundShift is a responsive, multi-tenant healthcare staffing marketplace connect
 - Bill rates and margins remain agency-only.
 - Nonclinical roles may require no certification; clinical roles can require role-specific licenses and credentials.
 - Reliability history is calculated per agency, never as a global contractor score.
+- Agencies cancel coverage that is no longer needed; contractors release accepted work only within the platform limits.
+- Distances are calculated from a professional's saved home base to each worksite.
 - The prototype does not process payments, tax forms, or W-9 information.
 - The MVP stores no patient health information.
 
@@ -42,10 +48,11 @@ Then open `http://localhost:8000`.
 
 1. Use the **Agency / Contractor** switch in the sidebar.
 2. Switch between Sunrise Family Care and Harborview Home Services.
-3. Post a new shift and observe the live margin calculation.
-4. Enter Contractor mode and claim an open shift.
-5. Open **My shifts**, then drop it to see it return to the shared feed.
-6. Review the agency contractor roster to see agency-scoped reliability.
+3. Post one-time coverage, a seven-day ongoing schedule, or an ongoing schedule with selected days.
+4. Enter Contractor mode to compare nearby opportunities by distance.
+5. Claim an eligible shift and review the two-shifts-per-day rule.
+6. Open **My shifts** to see the one-per-day and three-per-week release policy.
+7. Return to Agency mode to cancel coverage that is no longer needed.
 
 ## Technical approach
 
@@ -58,7 +65,7 @@ This first portfolio release is an interactive front-end prototype built with se
 - Agency-admin and healthcare-professional authentication
 - State-board license verification and expiration monitoring
 - Server-side claim transactions to prevent double-booking
-- Address geocoding and distance estimates
+- Production geocoding, traffic-aware travel estimates, and contractor-controlled location privacy
 - Notification service for urgent drops and contract renewals
 - Automated testing and audit logging
 

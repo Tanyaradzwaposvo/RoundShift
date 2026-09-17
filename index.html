@@ -76,7 +76,7 @@
       <div class="modal-header">
         <div>
           <p class="eyebrow">NEW COVERAGE REQUEST</p>
-          <h2>Post a shift</h2>
+          <h2>Post coverage</h2>
         </div>
         <button type="button" class="close-button" data-close-modal aria-label="Close">×</button>
       </div>
@@ -95,9 +95,26 @@
         <label>Worksite or client
           <select id="client-name" name="clientName" required></select>
         </label>
-        <label>Date
+        <label>Schedule
+          <select name="scheduleType" required>
+            <option value="one-time">One-time shift</option>
+            <option value="ongoing-daily">Ongoing — 7 days a week</option>
+            <option value="ongoing-custom">Ongoing — select days</option>
+          </select>
+        </label>
+        <label><span id="date-label-text">Shift date</span>
           <input name="date" type="date" required>
         </label>
+        <fieldset class="weekday-picker full-span hidden" id="weekday-fields">
+          <legend>Service days</legend>
+          <label><input type="checkbox" name="days" value="Mon"> Mon</label>
+          <label><input type="checkbox" name="days" value="Tue"> Tue</label>
+          <label><input type="checkbox" name="days" value="Wed"> Wed</label>
+          <label><input type="checkbox" name="days" value="Thu"> Thu</label>
+          <label><input type="checkbox" name="days" value="Fri"> Fri</label>
+          <label><input type="checkbox" name="days" value="Sat"> Sat</label>
+          <label><input type="checkbox" name="days" value="Sun"> Sun</label>
+        </fieldset>
         <label>Start time
           <input name="start" type="time" required value="08:00">
         </label>
@@ -150,7 +167,7 @@
 
       <div class="modal-actions">
         <button type="button" class="button secondary" data-close-modal>Cancel</button>
-        <button type="submit" class="button primary">Post open shift</button>
+        <button type="submit" class="button primary">Post coverage</button>
       </div>
     </form>
   </dialog>
