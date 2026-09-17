@@ -65,7 +65,3 @@ RoundShift is a product-design prototype, not legal advice. Independent-contract
 
 **Tanyaradzwa Amanda Posvo**  
 MS Business Analytics & Artificial Intelligence, The University of Texas at Dallas
-
-## License
-
-This repository is available under the MIT License.
