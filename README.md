@@ -1,28 +1,32 @@
 # RoundShift
 
-RoundShift is a responsive product prototype for senior-care staffing agencies and independent contractors. It replaces disconnected spreadsheets and phone calls with a shared shift marketplace while preserving tenant isolation and agency-specific contractor relationships.
+RoundShift is a responsive, multi-tenant healthcare staffing marketplace connecting agencies with qualified professionals across hospitals, hospice, pharmacies, clinics, senior care, and home care. It replaces disconnected spreadsheets and phone calls with a shared shift marketplace while preserving tenant isolation and agency-specific professional relationships.
 
 ## Live prototype features
 
 - Agency dashboard with tenant switching
 - Shift board with open, claimed, and completed states
 - Post-a-shift workflow with live margin calculation
-- Cross-agency contractor marketplace
+- Cross-agency healthcare-professional marketplace
+- Hospital, hospice, pharmacy, clinic, senior-living, and private-client worksites
+- Role-specific shifts for nurses, CNAs, HHAs, pharmacists, pharmacy technicians, medical assistants, caregivers, and companions
+- Credential-aware eligibility checks before a professional can claim a shift
 - Claim and drop flows with automatic reposting
 - Agency-scoped reliability flags after five drops
 - Contractor roster with optional certifications and experience
-- Facility and individual-client contract tracking
+- Worksite and individual-client contract tracking
 - Responsive desktop and mobile layouts
 - Browser persistence through `localStorage`
 
 ## Product principles
 
 - Agencies are isolated tenants.
-- Contractors have one platform-wide profile and can browse shifts from multiple agencies.
+- Professionals have one platform-wide profile and can browse shifts from multiple agencies.
 - Bill rates and margins remain agency-only.
-- Certification and experience are optional.
+- Nonclinical roles may require no certification; clinical roles can require role-specific licenses and credentials.
 - Reliability history is calculated per agency, never as a global contractor score.
 - The prototype does not process payments, tax forms, or W-9 information.
+- The MVP stores no patient health information.
 
 ## Run locally
 
@@ -45,13 +49,14 @@ Then open `http://localhost:8000`.
 
 ## Technical approach
 
-This first portfolio release is an interactive front-end prototype built with semantic HTML, modern CSS, and vanilla JavaScript. It deliberately has no production authentication or backend. Demo mutations persist only in the current browser.
+This first portfolio release is an interactive front-end prototype built with semantic HTML, modern CSS, and vanilla JavaScript. It deliberately has no production authentication, credential verification integration, or backend. Demo mutations persist only in the current browser.
 
 ### Planned production architecture
 
 - TypeScript web application
 - PostgreSQL database with tenant-aware row-level security
-- Agency-admin and contractor authentication
+- Agency-admin and healthcare-professional authentication
+- State-board license verification and expiration monitoring
 - Server-side claim transactions to prevent double-booking
 - Address geocoding and distance estimates
 - Notification service for urgent drops and contract renewals
@@ -59,7 +64,7 @@ This first portfolio release is an interactive front-end prototype built with se
 
 ## Compliance note
 
-RoundShift is a product-design prototype, not legal advice. Independent-contractor classification and senior-care staffing rules vary by jurisdiction. The business and legal structure should be reviewed by qualified counsel before real agencies or contractors are onboarded.
+RoundShift is a product-design prototype, not legal advice or a credentialing system. Healthcare staffing, professional licensing, patient privacy, and worker-classification rules vary by jurisdiction. The business and legal structure should be reviewed by qualified counsel before real organizations or professionals are onboarded.
 
 ## Author
 

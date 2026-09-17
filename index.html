@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="RoundShift is a multi-tenant staffing operations prototype for senior-care agencies and independent contractors.">
-  <title>RoundShift — Senior-care staffing, simplified</title>
+  <meta name="description" content="RoundShift is a multi-tenant healthcare staffing marketplace for agencies and qualified professionals.">
+  <title>RoundShift — Healthcare staffing, connected</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
         <button class="nav-item active" data-view="dashboard"><span>⌁</span> Overview</button>
         <button class="nav-item" data-view="shifts"><span>◷</span> Shift board</button>
         <button class="nav-item" data-view="contractors"><span>◉</span> Contractors</button>
-        <button class="nav-item" data-view="clients"><span>◇</span> Clients & contracts</button>
+        <button class="nav-item" data-view="clients"><span>◇</span> Worksites & contracts</button>
       </nav>
 
       <nav id="contractor-nav" class="nav-list hidden">
@@ -82,13 +82,17 @@
       </div>
 
       <div class="form-grid">
-        <label>Client type
+        <label>Worksite type
           <select id="client-type" name="clientType" required>
-            <option value="Facility">Facility</option>
+            <option value="Senior Living">Senior living</option>
+            <option value="Hospital">Hospital</option>
+            <option value="Hospice">Hospice</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Clinic">Clinic</option>
             <option value="Individual">Individual</option>
           </select>
         </label>
-        <label>Client
+        <label>Worksite or client
           <select id="client-name" name="clientName" required></select>
         </label>
         <label>Date
@@ -100,12 +104,30 @@
         <label>End time
           <input name="end" type="time" required value="16:00">
         </label>
-        <label>Certification
+        <label>Professional role
+          <select name="role" required>
+            <option>Companion</option>
+            <option>Caregiver</option>
+            <option>CNA</option>
+            <option>HHA</option>
+            <option>Medical Assistant</option>
+            <option>LVN / LPN</option>
+            <option>Registered Nurse</option>
+            <option>Pharmacy Technician</option>
+            <option>Pharmacist</option>
+          </select>
+        </label>
+        <label>Credential requirement
           <select name="cert">
             <option>None</option>
             <option>CNA</option>
             <option>HHA</option>
             <option>CPR</option>
+            <option>BLS</option>
+            <option>LVN / LPN License</option>
+            <option>RN License</option>
+            <option>Pharmacy Technician Registration</option>
+            <option>Pharmacist License</option>
           </select>
         </label>
         <label>Contractor pay rate
